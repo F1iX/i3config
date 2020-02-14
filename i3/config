@@ -162,7 +162,9 @@ bar {
 
 # Volume up and down
 bindsym XF86AudioRaiseVolume exec --no-startup-id pamixer -i 2
+bindsym mod1+F12 exec --no-startup-id pamixer -i 2
 bindsym XF86AudioLowerVolume exec --no-startup-id pamixer -d 2
+bindsym mod1+F9 exec --no-startup-id pamixer -d 2
 bindsym XF86AudioMute exec --no-startup-id pamixer -t
 
 # Microphone mute toggle
@@ -179,7 +181,8 @@ bindsym $mod+l exec "i3lock -c 000000"
 bindsym XF86PowerOff exec "pamixer -m; i3lock -c 000000; systemctl suspend"
 
 # Printscreen
-bindsym Print exec "maim ~/Screenshots/$(date +'%Y%m%d_%H-%M-%S').png -s; nautilus ~/Screenshots/"
+bindsym Print exec "maim ~/Screenshots/$(date +'%Y%m%d_%H-%M-%S').png -s; thunar ~/Screenshots/"
+bindsym Shift+Print exec "maim ~/Screenshots/$(date +'%Y%m%d_%H-%M-%S').png -s -d 2; thunar  ~/Screenshots/"
 
 # Firefox shortcut ThinkVantage button 
 bindsym XF86Launch1 exec firefox 
@@ -188,6 +191,10 @@ bindsym XF86Launch1 exec firefox
 bindsym XF86AudioNext exec qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 bindsym XF86AudioPrev exec qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
 bindsym XF86AudioPlay exec qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+
+bindsym mod1+Right exec qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+bindsym mod1+Left exec qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+bindsym mod1+Down exec qdbus org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
 
 # Switch workspace with tab
 bindsym Mod1+Shift+Tab workspace prev
@@ -200,26 +207,33 @@ bindsym Mod1+Tab workspace next
 
 # Configure monitors (output names might vary, see xrandr)
 exec --no-startup-id bash ~/.config/i3/setupmonitor.sh
-workspace 1 output LVDS-1
-workspace 2 output LVDS-1
-workspace 3 output LVDS-1
-workspace 4 output LVDS-1
-workspace 5 output LVDS-1
-workspace 6 output VGA-1
-workspace 7 output VGA-1
-workspace 8 output VGA-1
-workspace 9 output VGA-1
+workspace 1 output HDMI2
+workspace 2 output HDMI2
+workspace 3 output HDMI2
+workspace 4 output HDMI2
+workspace 5 output HDMI2
+workspace 6 output LVDS1
+workspace 7 output LVDS1
+workspace 8 output LVDS1
+workspace 9 output LVDS1
 
 # Switch monitor setup
-bindsym XF86Display exec --no-startup-id "bash ~/.config/i3/switchmonitor.sh; bash ~/.config/i3/setupmonitor.sh; exec feh --bg-fill .wall/evausa.jpg"
+bindsym XF86Display exec --no-startup-id "bash ~/.config/i3/switchmonitor.sh; bash ~/.config/i3/setupmonitor.sh"
 
 # Autostart programs
+exec --no-startup-id blueman-applet
 exec --no-startup-id owncloud
 exec --no-startup-id nm-applet
 exec --no-startup-id compton -b --config ~/.config/compton.conf
 
 # Wallpaper
-exec feh --bg-fill .wall/evausa.jpg
+exec feh --bg-fill .wall/mallorca.jpg
 
 # Octave/Matlab Figures Floating
 for_window [title="Figure*"] floating enable
+for_window [title="Volume Control"] floating enable
+for_window [title="Bluetooth Devices"] floating enable
+
+# Autostart
+exec --no-startup-id nextcloud
+exec --no-startup-id "/opt/urserver/urserver --daemon"

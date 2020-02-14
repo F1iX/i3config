@@ -1,8 +1,10 @@
 #!/bin/bash
 # Output names might vary, check xrandr
-EXT="VGA-1"
-INT="LVDS-1"
+#EXT="HDMI2"
+#INT="LVDS1"
 
+# Disable VGA output if enabled before
+#xrandr --output "VGA1" --off
 
 if [ ! -f "monitor_mode.dat" ] ; then
 	# Start with internal mode if no configuration file exists
@@ -13,8 +15,12 @@ else
 fi
 
 if [ $mode = "internalexternal" ]; then
-        xrandr --output $INT --auto --output $EXT --auto --right-of $INT
+        #xrandr --output $INT --auto --output $EXT --auto --right-of $INT
+	sh /home/felix/.screenlayout/Laptop_Monitor.sh
 # elif [ $mode = "dp" ]; then
 else
-        xrandr --output $EXT --off --output $INT --auto
+        sh /home/felix/.screenlayout/Laptop.sh
 fi
+
+# Reload desktop background
+exec feh --bg-fill /home/felix/.wall/mallorca.jpg
