@@ -16,3 +16,4 @@
     background_type = transparent
     cursor_color = "#aaaaaa"
     foreground_color = "#ffffff"
+    scrollback_lines = 2000
