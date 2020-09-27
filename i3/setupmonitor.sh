@@ -16,11 +16,14 @@ fi
 
 if [ $mode = "internalexternal" ]; then
         #xrandr --output $INT --auto --output $EXT --auto --right-of $INT
-	sh /home/felix/.screenlayout/Laptop_Monitor.sh
+	sh /home/felix/.screenlayout/Internal_HDMI4K.sh
 # elif [ $mode = "dp" ]; then
 else
-        sh /home/felix/.screenlayout/Laptop.sh
+        sh /home/felix/.screenlayout/Internal.sh
 fi
 
+# Map touchscreen to correct screen
+xinput --map-to-output 16 eDP1
+
 # Reload desktop background
-exec feh --bg-fill /home/felix/.wall/mallorca.jpg
+exec feh --bg-fill /home/felix/.config/i3/wall/saxonswitzerland.jpg

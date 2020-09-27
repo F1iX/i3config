@@ -1,6 +1,8 @@
 #!/bin/bash
 # Changes screen brightness by writing a value to the ACPI handler in /sys/class/backlight.
 # Make sure the file brightness is writable by adding the following to /etc/udev/rules.d/backlight.rules
+# and by adding the current user to the group video (gpasswd -a user video)
+# To identify the correct backlight manager (e.g. apci_video0 or intel_backlight) check ls /sys/class/backlight.
 # 
 # ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="acpi_video0", RUN+="/bin/chgrp video /sys/class/backlight/%k/brightness"
 # ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="acpi_video0", RUN+="/bin/chmod g+w /sys/class/backlight/%k/brightness"
