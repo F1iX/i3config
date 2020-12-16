@@ -53,7 +53,7 @@ disk "/" {
 }
 
 memory {
-	format = "%used / %total (%percentage_used)"
+	format = "%used (%percentage_used)"
 }
 
 cpu_temperature 1 {

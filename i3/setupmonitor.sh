@@ -1,7 +1,8 @@
 #!/bin/bash
 # Output names might vary, check xrandr
-#EXT="HDMI2"
-#INT="LVDS1"
+EXT1="DP2-1"
+EXT2="DP2-2"
+INT="eDP1"
 
 # Disable VGA output if enabled before
 #xrandr --output "VGA1" --off
@@ -15,15 +16,18 @@ else
 fi
 
 if [ $mode = "internalexternal" ]; then
-        #xrandr --output $INT --auto --output $EXT --auto --right-of $INT
-	sh /home/felix/.screenlayout/Internal_HDMI4K.sh
-# elif [ $mode = "dp" ]; then
+        xrandr --output eDP1 --primary --mode 1920x1080 --pos 0x334 --rotate normal
+        xrandr --output $EXT1 --mode 1920x1200 --pos 1920x0 --rotate normal 
+        xrandr --output $EXT2 --mode 1920x1200 --pos 3840x0 --rotate normal 
 else
-        sh /home/felix/.screenlayout/Internal.sh
+        #sh /home/felix/.screenlayout/Internal.sh
+        xrandr --output $INT --primary --mode 1920x1080 --pos 0x334 --rotate normal
+        xrandr --output $EXT1 --off
+        xrandr --output $EXT2 --off
 fi
 
-# Map touchscreen to correct screen
-xinput --map-to-output 16 eDP1
+# Map touchscreen to correct screen (check name via xinput list)
+xinput --map-to-output "Wacom Pen and multitouch sensor Finger" eDP1
 
 # Reload desktop background
 exec feh --bg-fill /home/felix/.config/i3/wall/saxonswitzerland.jpg

@@ -10,6 +10,8 @@
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $extdisplay1 DP2-1 #DVI-I-1-1
+set $extdisplay2 DP2-2 #DVI-I-2-2
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -37,7 +39,7 @@ bindsym $mod+Shift+q kill
 bindsym Mod1+F4 kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec "dmenu_run -fn monospace:11"
 #bindsym $mod+space exec dmenu_run
 bindsym $mod+Shift+d exec keepass-dmenu --database ~/Documents/felix.kdbx --cache-password 36000
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -202,15 +204,15 @@ bindsym Mod1+Tab workspace next
 
 # Configure monitors (output names might vary, see xrandr) and set wallpaper
 exec --no-startup-id bash ~/.config/i3/setupmonitor.sh
-workspace 1 output HDMI2
-workspace 2 output HDMI2
-workspace 3 output HDMI2
-workspace 4 output HDMI2
-workspace 5 output HDMI2
-workspace 6 output eDP1
-workspace 7 output eDP1
-workspace 8 output eDP1
-workspace 9 output eDP1
+workspace 1 output eDP1
+workspace 2 output $extdisplay1
+workspace 3 output $extdisplay1
+workspace 4 output $extdisplay1
+workspace 5 output $extdisplay1
+workspace 6 output $extdisplay2
+workspace 7 output $extdisplay2
+workspace 8 output $extdisplay2
+workspace 9 output $extdisplay2
 
 # Switch monitor setup
 bindsym XF86Display exec --no-startup-id "bash ~/.config/i3/switchmonitor.sh; bash ~/.config/i3/setupmonitor.sh"
@@ -225,3 +227,4 @@ exec --no-startup-id nextcloud
 exec --no-startup-id "/opt/urserver/urserver --daemon"
 exec --no-startup-id blueman-applet
 exec --no-startup-id nm-applet
+exec --no-startup-id onboard
