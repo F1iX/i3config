@@ -2,7 +2,7 @@
 
 if [ ! -f ".config/i3/monitor_mode.dat" ] ; then
 	# Start with internal mode if no configuration file exists
-  	mode="int"
+  	mode="Int"
 else
 	# Otherwise read the value from the file
   	mode=`cat .config/i3/monitor_mode.dat`
