@@ -1,21 +1,23 @@
 #!/bin/bash
 
-if [ ! -f "monitor_mode.dat" ] ; then
+if [ ! -f ".config/i3/monitor_mode.dat" ] ; then
 	# Start with internal mode if no configuration file exists
-  	mode="internal"
+  	mode="int"
 else
-	# otherwise read the value from the file
-  	mode=`cat monitor_mode.dat`
+	# Otherwise read the value from the file
+  	mode=`cat .config/i3/monitor_mode.dat`
 fi
 
 # Switch modes
-if [ $mode = "internalexternal" ]; then
-        next="internal"
-elif [ $mode = "internal" ]; then
-        next="internalexternal"
+if [ $mode = "Int/Ext" ]; then
+        next="Int/TV"
+elif [ $mode = "Int/TV" ]; then
+	next="Int"
+elif [ $mode = "Int" ]; then
+        next="Int/Ext"
 fi
 
 # Save configuration
-echo "${next}" > monitor_mode.dat
+echo "${next}" > .config/i3/monitor_mode.dat
 
 # Now run monitor setup separately
