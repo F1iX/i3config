@@ -1,5 +1,12 @@
 [global_config]
 [keybindings]
+[profiles]
+  [[default]]
+    background_color = "#300a24"
+    background_darkness = 0.95
+    background_type = transparent
+    foreground_color = "#ffffff"
+    scrollback_lines = 2000
 [layouts]
   [[default]]
     [[[child1]]]
@@ -9,11 +16,3 @@
       parent = ""
       type = Window
 [plugins]
-[profiles]
-  [[default]]
-    background_color = "#300a24"
-    background_darkness = 0.95
-    background_type = transparent
-    cursor_color = "#aaaaaa"
-    foreground_color = "#ffffff"
-    scrollback_lines = 2000
