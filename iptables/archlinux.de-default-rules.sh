@@ -25,7 +25,7 @@ iptables -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 
 
 # SSH: tcp/22
-#iptables -A INPUT -p tcp --dport  22 -j ACCEPT
+iptables -A INPUT -p tcp --dport  22 -j ACCEPT
 
 # CUPS/IPP: tcp/631
 #iptables -A INPUT -p tcp --dport 631 -j ACCEPT
